@@ -88,6 +88,8 @@ node
 {
   int val;
   vector< pair< int, node* > > nei;
+  node() {};
+  node(int i) : val(i) {}
 };
 
 ```
@@ -142,7 +144,7 @@ dijkstra( node* src, node* target, list<node*>& path )
 
     y.pop(); x.insert(u);  // u, the 'smallest' grey node, becomes black
 
-    for( pair< int, node* > n : u->nei )
+    for( pair< int, node* >& n : u->nei )
     {
       if( x.end() != x.find(n.second) ) continue; // if n is black, do nothing...
 
@@ -167,28 +169,23 @@ Nous testons l'algorithme sur un exemple de graphe étiqueté positivement.
 int
 main()
 {
-  struct node n1; n1.val = 1;
-  struct node n2; n2.val = 2;
-  struct node n3; n3.val = 3;
-  struct node n4; n4.val = 4;
-  struct node n5; n5.val = 5;
-  struct node n6; n6.val = 6;
-  n1.nei.insert(n1.nei.begin(), { 1, &n2 });
-  n1.nei.insert(n1.nei.begin(), { 4, &n3 });
-  n2.nei.insert(n2.nei.begin(), { 1, &n4 });
-  n2.nei.insert(n2.nei.begin(), { 2, &n5 });
-  n4.nei.insert(n4.nei.begin(), { 1, &n3 });
-  n4.nei.insert(n4.nei.begin(), { 2, &n5 });
-  n5.nei.insert(n5.nei.begin(), { 1, &n6 });
-  n6.nei.insert(n6.nei.begin(), { 1, &n2 });
+  node n1(1); node n2(2); node n3(3);
+  node n4(4); node n5(5); node n6(6);
+  n1.nei.push_back( { 1, &n2 } );
+  n1.nei.push_back( { 4, &n3 } );
+  n2.nei.push_back( { 1, &n4 } );
+  n2.nei.push_back( { 2, &n5 } );
+  n4.nei.push_back( { 1, &n3 } );
+  n4.nei.push_back( { 2, &n5 } );
+  n5.nei.push_back( { 1, &n6 } );
+  n6.nei.push_back( { 1, &n2 } );
   
   list<node*> path;
   dijkstra(&n1, &n3, path);
   
-  for( list<node*>::iterator it = path.begin() ;
-       it != path.end() ; it++ )
+  for( node* n : path )
   {
-    cout << (*it)->val << " ; ";
+    cout << n->val << " ; ";
   }
   cout << endl;
   return 0;
