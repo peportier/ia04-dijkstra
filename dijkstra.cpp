@@ -54,7 +54,7 @@ dijkstra( node* src, node* target, list<node*>& path )
   x.insert(src);
 
   function<int(node*)>
-  dist = [d]( node* v )
+  dist = [&]( node* v )
   {
     map< node*, int >::const_iterator it = d.find(v);
     if( d.end() == it )
