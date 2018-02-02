@@ -53,7 +53,7 @@ dijkstra( node* src, node* target, list<node*>& path )
                   greater< pair< int, node* > > > y;
 
   y.push({0, src});
-  x.insert(src);
+  //x.insert(src);
 
   function<int(node*)>
   dist = [&]( node* v )
