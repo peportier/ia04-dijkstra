@@ -53,7 +53,6 @@ dijkstra( node* src, node* target, list<node*>& path )
                   greater< pair< int, node* > > > y;
 
   y.push({0, src});
-  //x.insert(src);
 
   function<int(node*)>
   dist = [&]( node* v )
@@ -88,7 +87,7 @@ dijkstra( node* src, node* target, list<node*>& path )
     {
       if( x.end() != x.find(n.second) ) continue; // if n is black, do nothing...
 
-      // We don't make a special case if n is already an element of y.
+      // We don't make a special case for n already an element of y.
       // Indeed, the STL priority queue doesn't have an increaseKey operation.
       // Therefore, we tolerate duplicates.
 

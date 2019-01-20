@@ -94,7 +94,7 @@ node
 
 ```
 
-L'implémentation de l'algorithme suit d'assez près le pseudo-code de notre dérivation. La différence principale réside dans l'utilisation d'une file de priorité, et dans le maintient d'une structure `map< node*, node* > parent` qui permet de reconstruire le chemin une fois la destination atteinte.
+L'implémentation de l'algorithme suit d'assez près le pseudo-code de notre dérivation. La différence principale réside dans l'utilisation d'une file de priorité, et dans le maintien d'une structure `map< node*, node* > parent` qui permet de reconstruire le chemin une fois la destination atteinte.
 
 ```c++
 void
@@ -147,7 +147,7 @@ dijkstra( node* src, node* target, list<node*>& path )
     {
       if( x.end() != x.find(n.second) ) continue; // if n is black, do nothing...
 
-      // We don't make a special case if n is already an element of y.
+      // We don't make a special case for n already an element of y.
       // Indeed, the STL priority queue doesn't have an increaseKey operation.
       // Therefore, we tolerate duplicates.
 
