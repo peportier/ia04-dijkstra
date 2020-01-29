@@ -45,6 +45,8 @@ Tous les successeurs blancs de $u$ sont colorés en gris, et une distance est m�
 Tous les successeurs gris de $u$ restent gris, mais la distance qui leur est associée peut être réduite (si le chemin qui passe par $u$ est plus court).
 
 Pour les successeurs noirs de $u$, il n'y a rien à faire.
+
+![illustration du principe de l'algorithme de Dijkstra](./illustration-dijkstra.jpg)
 $$
 \begin{aligned}
 &x \gets \emptyset \\
